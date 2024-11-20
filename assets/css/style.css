@@ -1,0 +1,31 @@
+@import url('header.css');
+@import url('nosotros.css');
+@import url('font-awesome.css');
+
+:root {
+	--main-color: #023dc4;
+	--second-color: #f8a803;
+	--third-color: #f4ab01;
+	--text-color: #4a5764;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+}
+
+/* main */
+main {
+	margin-top: 7rem;
+}
