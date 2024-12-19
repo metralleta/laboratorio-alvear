@@ -31,6 +31,11 @@ body {
 }
 
 /* estilos globales para los contenedores */
+
+section {
+	scroll-margin-top: 80px; /* Un poco más de espacio */
+}
+
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -67,6 +72,14 @@ header .container {
 	display: block;
 }
 
+.logo a {
+	display: block;
+}
+
+.logo a:hover {
+	opacity: 0.9; /* Opcional: da un sutil efecto al hacer hover */
+}
+
 #navbar ul {
 	display: flex;
 	list-style: none;
@@ -76,12 +89,30 @@ header .container {
 	color: var(--text-color);
 	font-weight: 500;
 	padding: 0.5rem 1rem;
-	border-radius: 4px;
+	position: relative; /* Necesario para posicionar la línea */
 }
 
+/* Crea la línea usando pseudo-elemento */
+#navbar a::after {
+	content: '';
+	position: absolute;
+	bottom: 0; /* La posiciona en la parte inferior */
+	left: 50%; /* La centra horizontalmente */
+	width: 0; /* Comienza con ancho 0 */
+	height: 2px; /* Grosor de la línea */
+	background-color: var(--main-color);
+	transition: all 0.3s ease;
+	transform: translateX(-50%); /* Asegura que esté perfectamente centrada */
+}
+
+/* Cambia el color del texto al hover */
 #navbar a:hover {
 	color: var(--main-color);
-	background-color: var(--light-bg);
+}
+
+/* Expande la línea al hover */
+#navbar a:hover::after {
+	width: calc(100% - 2rem); /* Se expande al ancho total menos el padding */
 }
 
 #menu-bar {
@@ -252,5 +283,104 @@ main {
 	.laboratorio-image {
 		min-height: 400px;
 		order: -1; /* Mueve la imagen arriba en móvil */
+	}
+}
+
+/* Sección servicios */
+#servicios {
+	position: relative;
+	padding: 6rem 0;
+	background-color: transparent;
+}
+
+#servicios::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('../images/servicios_bg.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	filter: brightness(0.8);
+	z-index: -1;
+}
+
+.servicios-content {
+	background-color: var(--main-color);
+	padding: 4rem;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	/* max-width: 1000px; */
+	margin: 0 auto;
+}
+
+#servicios h2 {
+	color: var(--second-color);
+	font-size: 2.5rem;
+	text-align: center;
+	margin-bottom: 3rem;
+	text-transform: uppercase;
+}
+
+.services-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
+}
+
+.card {
+	background: var(--white);
+	overflow: hidden;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+}
+
+.card-image {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+}
+
+.card-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.card:hover .card-image img {
+	transform: scale(1.1);
+}
+
+.card-content {
+	padding: 1.5rem;
+}
+
+.card h3 {
+	color: var(--second-color);
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.card p {
+	color: var(--text-color);
+	line-height: 1.6;
+}
+
+/* Media queries para servicios */
+@media (max-width: 768px) {
+	.services-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.servicios-content {
+		padding: 2rem;
+		margin: 0 1rem;
 	}
 }
