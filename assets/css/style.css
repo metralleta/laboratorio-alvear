@@ -129,8 +129,8 @@ header .container {
 	}
 
 	#navbar {
-		position: fixed;
-		top: 80px;
+		position: absolute; /* Cambiamos a absolute para mejor posicionamiento */
+		top: 100%; /* Lo posicionamos justo debajo del header */
 		left: -100%;
 		width: 100%;
 		background-color: var(--white);
@@ -152,6 +152,16 @@ header .container {
 		display: block;
 		padding: 1rem;
 		text-align: center;
+	}
+
+	/* Aseguramos que el logo mantenga su tamaño apropiado */
+	.logo {
+		max-width: 200px; /* Ajustamos el tamaño del logo para móvil */
+	}
+
+	/* Mantenemos el header flexible */
+	header .container {
+		padding: 0.5rem 20px; /* Ajustamos el padding para mejor espaciado */
 	}
 }
 
