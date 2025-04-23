@@ -170,8 +170,8 @@ main {
 	padding-top: 100px; /* Altura del header + espacio extra */
 }
 
-/* Sección Nosotros */
-#nosotros {
+/* Sección Home */
+#home {
 	position: relative;
 	width: 100%;
 	min-height: 100vh;
@@ -183,7 +183,7 @@ main {
 	text-align: center;
 }
 
-#nosotros::before {
+#home::before {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -198,18 +198,24 @@ main {
 	z-index: -1;
 }
 
-#nosotros .container {
+#home .container {
 	position: relative;
 	z-index: 1;
 }
 
-#nosotros h2 {
+#home h2 {
 	font-size: 3rem;
 	margin-bottom: 2rem;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-#nosotros p {
+#home h3 {
+	font-size: 2.5rem;
+	margin-bottom: 2rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#home p {
 	font-size: 1.2rem;
 	max-width: 800px;
 	margin: 0 auto 1.5rem;
@@ -219,11 +225,11 @@ main {
 
 /* Media queries para la sección nosotros */
 @media (max-width: 768px) {
-	#nosotros h2 {
+	#home h2 {
 		font-size: 2.5rem;
 	}
 
-	#nosotros p {
+	#home p {
 		font-size: 1.1rem;
 		padding: 0 1rem;
 	}
