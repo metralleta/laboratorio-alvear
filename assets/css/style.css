@@ -392,6 +392,51 @@ main {
 	background-color: transparent;
 }
 
+.card {
+	border-radius: 8px;
+}
+
+.card:hover {
+	transform: translateY(-10px);
+}
+
+.card:hover .card-image img {
+	transform: scale(1.05);
+}
+
+.resultados-info {
+	background-color: var(--white);
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+	margin-top: 3rem;
+}
+
+.resultados-info h3 {
+	color: var(--main-color);
+	margin-bottom: 1rem;
+}
+
+.resultados-list {
+	list-style-type: none;
+	margin-left: 1rem;
+}
+
+.resultados-list li {
+	margin-bottom: 0.8rem;
+	position: relative;
+	padding-left: 1.5rem;
+}
+
+.resultados-list li:before {
+	content: '\f00c';
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	position: absolute;
+	left: 0;
+	color: var(--main-color);
+}
+
 #servicios::before {
 	content: '';
 	position: absolute;
@@ -486,6 +531,132 @@ main {
 	.servicios-content {
 		padding: 2rem;
 		margin: 0 1rem;
+	}
+}
+
+/* Sección pacientes */
+#pacientes {
+	background-color: var(--white);
+	padding: 5rem 0;
+}
+
+#pacientes h2 {
+	color: var(--second-color);
+	text-transform: uppercase;
+	font-size: 2.5rem;
+	font-weight: 300;
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.pacientes-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+}
+
+.pacientes-column {
+	padding: 2rem;
+	background-color: var(--light-bg);
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.pacientes-column h3 {
+	color: var(--second-color);
+	font-size: 1.8rem;
+	margin-bottom: 1.5rem;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+.pacientes-column p {
+	font-size: 1rem;
+	line-height: 1.8;
+	margin-bottom: 1.5rem;
+}
+
+.pacientes-column span {
+	font-weight: 500;
+	color: var(--second-color);
+}
+
+.indicaciones-list {
+	margin-top: 1.5rem;
+}
+
+.indicacion-item {
+	margin-bottom: 1.5rem;
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.indicacion-item:last-child {
+	border-bottom: none;
+}
+
+.indicacion-item h4 {
+	color: var(--main-color);
+	font-size: 1.2rem;
+	margin-bottom: 0.5rem;
+}
+
+.requisitos-list {
+	margin-left: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.requisitos-list li {
+	margin-bottom: 0.5rem;
+}
+
+.obras-sociales-logos {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	margin-top: 2rem;
+	justify-content: space-around;
+}
+
+.obra-social-logo {
+	width: 100px;
+	height: 100px;
+	background-color: var(--white);
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.obra-social-logo:hover {
+	transform: scale(1.05);
+}
+
+.obra-social-logo img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+/* Media queries para las nuevas secciones */
+@media (max-width: 968px) {
+	.pacientes-content {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.obras-sociales-logos {
+		justify-content: center;
+	}
+
+	.obra-social-logo {
+		width: 80px;
+		height: 80px;
 	}
 }
 
