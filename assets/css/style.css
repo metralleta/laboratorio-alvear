@@ -33,6 +33,7 @@ body {
 /* Estilos globales para los contenedores */
 section {
 	scroll-margin-top: 80px;
+	padding: 5rem 0;
 }
 
 .container {
@@ -42,36 +43,47 @@ section {
 	width: 100%;
 }
 
-/* Estilos comunes para encabezados de sección */
-#nosotros h2,
-#laboratorio h2,
-#pacientes h2 {
+/* Estilos estandarizados para todas las secciones */
+.section-title {
 	color: var(--second-color);
 	text-transform: uppercase;
 	font-size: 2.5rem;
 	font-weight: 300;
 	text-align: center;
 	margin-bottom: 3rem;
+	width: 100%;
 }
 
-#servicios h2 {
+/* Para título blanco en secciones con fondo oscuro */
+#servicios .section-title,
+#contacto .section-title {
 	color: var(--white);
-	font-size: 2.5rem;
-	font-weight: 300;
-	text-align: center;
-	margin-bottom: 1rem;
-	text-transform: uppercase;
+}
+
+.section-content {
+	position: relative;
+	padding: 2rem;
+	margin: 0 auto;
+	border-radius: 8px;
 }
 
 /* Estilos comunes para subtítulos */
-#nosotros h3,
-#laboratorio h3,
-.card h3 {
+h3 {
 	color: var(--second-color);
 	font-size: 1.8rem;
 	margin-bottom: 1.5rem;
 	text-transform: uppercase;
 	font-weight: 400;
+}
+
+.card h3 {
+	font-size: 1.5rem;
+}
+
+p {
+	font-size: 1rem;
+	line-height: 1.8;
+	margin-bottom: 1.5rem;
 }
 
 /* Header */
@@ -183,9 +195,10 @@ main {
 	z-index: -1;
 }
 
-#home .container {
-	position: relative;
-	z-index: 1;
+#home .section-content {
+	background-color: transparent;
+	padding: 2rem;
+	text-align: center;
 }
 
 #home h2 {
@@ -195,6 +208,7 @@ main {
 }
 
 #home h3 {
+	color: var(--white);
 	font-size: 2.5rem;
 	margin-bottom: 2rem;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -211,13 +225,11 @@ main {
 /* Sección nosotros */
 #nosotros {
 	background-color: var(--light-bg);
-	padding: 5rem 0;
 }
 
-.nosotros-content {
-	position: relative;
-	padding: 2rem;
-	margin: 0 auto;
+#nosotros .section-content {
+	background-color: var(--white);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .nosotros-text {
@@ -247,29 +259,14 @@ main {
 	object-fit: cover;
 }
 
-.nosotros-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-	display: block;
-	max-width: 100%;
-}
-
 /* Sección laboratorio */
 #laboratorio {
 	background-color: var(--white);
-	padding: 5rem 0;
 }
 
-#laboratorio h2 {
-	color: var(--second-color);
-	text-transform: uppercase;
-	font-size: 2.5rem;
-	font-weight: 300;
-	text-align: center;
-	margin-bottom: 3rem;
-	width: 100%;
+#laboratorio .section-content {
+	background-color: var(--light-bg);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .laboratorio-grid {
@@ -283,6 +280,27 @@ main {
 .laboratorio-content {
 	padding-right: 2rem;
 	align-self: start;
+}
+
+.laboratorio-content h4 {
+	color: var(--main-color);
+	font-size: 1.2rem;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.laboratorio-content ul {
+	margin-left: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.laboratorio-content ul li {
+	margin-bottom: 0.5rem;
+}
+
+.laboratorio-content span {
+	font-weight: 500;
+	color: var(--second-color);
 }
 
 .laboratorio-image {
@@ -300,14 +318,6 @@ main {
 	object-fit: cover;
 	object-position: center;
 	display: block;
-}
-
-#laboratorio h3 {
-	color: var(--second-color);
-	font-size: 1.8rem;
-	margin-bottom: 1.5rem;
-	text-transform: uppercase;
-	font-weight: 400;
 }
 
 /* Sección servicios */
@@ -332,28 +342,42 @@ main {
 	z-index: -1;
 }
 
-.servicios-content {
+.servicios-wrapper {
 	position: relative;
-	padding: 2rem;
-	margin: 0 auto;
+	z-index: 1;
 }
 
-.servicios-content::before {
+.servicios-wrapper::before {
 	content: '';
 	position: absolute;
 	left: 0;
-	width: 100%;
-	height: 60%;
-	background-color: var(--main-color);
 	top: 0;
+	width: 100%;
+	height: 400px;
+	background-color: var(--main-color);
 	z-index: -1;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+#servicios .section-title {
+	color: var(--white);
+	position: relative;
+	padding-top: 2rem;
+	z-index: 2;
+}
+
+#servicios .section-content {
+	background-color: transparent;
+	padding-top: 1rem;
+	z-index: 2;
 }
 
 .services-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 2rem;
+	margin-bottom: 3rem;
 }
 
 .card {
@@ -361,10 +385,6 @@ main {
 	overflow: hidden;
 	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
-}
-
-.card:hover {
-	transform: translateY(-10px);
 }
 
 .card-image {
@@ -377,10 +397,6 @@ main {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-}
-
-.card:hover .card-image img {
-	transform: scale(1.05);
 }
 
 .card-content {
@@ -428,7 +444,11 @@ main {
 /* Sección pacientes */
 #pacientes {
 	background-color: var(--white);
-	padding: 5rem 0;
+}
+
+#pacientes .section-content {
+	background-color: transparent;
+	padding: 0;
 }
 
 .pacientes-content {
@@ -441,7 +461,7 @@ main {
 	padding: 2rem;
 	background-color: var(--light-bg);
 	border-radius: 8px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .pacientes-column p {
@@ -532,8 +552,8 @@ footer::before {
 	background-image: url('../images/footer_bg.png');
 	background-size: cover;
 	background-position: top center;
-	opacity: 0.4; /* Puedes ajustar según prefieras */
-	mix-blend-mode: overlay; /* Opcional, mejora la integración */
+	opacity: 0.4;
+	mix-blend-mode: overlay;
 	z-index: -1;
 }
 
@@ -542,24 +562,17 @@ footer .container {
 	z-index: 1;
 }
 
-footer h2,
-footer h3 {
-	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-footer h2 {
-	font-size: 2.5rem;
-	font-weight: 300;
-	text-align: center;
-	text-transform: uppercase;
-	margin-bottom: 2rem;
+footer .section-content {
+	background-color: transparent;
 }
 
 footer h3 {
+	color: var(--white);
 	font-size: 1.3rem;
 	margin-top: 1.5rem;
 	margin-bottom: 0.5rem;
 	font-weight: 600;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 footer p {
@@ -630,9 +643,21 @@ footer p {
 		font-size: 2.5rem;
 	}
 
+	#home h3 {
+		font-size: 2rem;
+	}
+
 	#home p {
 		font-size: 1.1rem;
 		padding: 0 1rem;
+	}
+
+	.section-title {
+		font-size: 2rem;
+	}
+
+	.section-content {
+		padding: 1.5rem;
 	}
 }
 
@@ -644,10 +669,6 @@ footer p {
 }
 
 @media (max-width: 768px) {
-	.nosotros-content {
-		padding: 1rem;
-	}
-
 	.nosotros-image-full {
 		margin: 1.5rem 0;
 	}
@@ -676,9 +697,8 @@ footer p {
 		grid-template-columns: 1fr;
 	}
 
-	.servicios-content {
-		padding: 2rem;
-		margin: 0 1rem;
+	.servicios-wrapper::before {
+		height: 260px; /* Ajustado para móviles */
 	}
 }
 
@@ -699,6 +719,10 @@ footer p {
 		width: 80px;
 		height: 80px;
 	}
+
+	.section-content {
+		padding: 1rem;
+	}
 }
 
 /* Media query para footer */
@@ -710,5 +734,9 @@ footer p {
 
 	.map-column {
 		order: -1;
+	}
+
+	footer {
+		padding: 3rem 0;
 	}
 }
