@@ -7,9 +7,6 @@
 	--light-bg: #f5f8fa;
 	--white: #ffffff;
 	--transition: all 0.3s ease;
-	--shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
-	--shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.1);
-	--shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* Reset y estilos base */
@@ -19,14 +16,6 @@
 	box-sizing: border-box;
 	text-decoration: none;
 	transition: var(--transition);
-}
-
-/* Optimización para dispositivos de alto DPI */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-	img {
-		image-rendering: -webkit-optimize-contrast;
-		image-rendering: crisp-edges;
-	}
 }
 
 html {
@@ -116,11 +105,8 @@ header {
 	right: 0;
 	background-color: var(--white);
 	padding: 1rem 0;
-	box-shadow: var(--shadow-light);
+	box-shadow: 0 1px 5px var(--third-color);
 	z-index: 1000;
-	will-change: transform;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 }
 
 header .container {
@@ -132,15 +118,12 @@ header .container {
 .logo {
 	max-width: 250px;
 	height: auto;
-	flex-shrink: 0;
 }
 
 .logo img {
 	width: 100%;
 	height: auto;
 	display: block;
-	max-height: 60px;
-	object-fit: contain;
 }
 
 .logo a {
@@ -149,14 +132,11 @@ header .container {
 
 .logo a:hover {
 	opacity: 0.9;
-	transform: scale(1.02);
 }
 
 #navbar ul {
 	display: flex;
 	list-style: none;
-	margin: 0;
-	padding: 0;
 }
 
 #navbar a {
@@ -164,7 +144,6 @@ header .container {
 	font-weight: 500;
 	padding: 0.5rem 1rem;
 	position: relative;
-	display: block;
 }
 
 /* Línea decorativa en los enlaces del nav */
@@ -180,34 +159,13 @@ header .container {
 	transition: width 0.3s ease;
 }
 
-#navbar a:hover {
-	color: var(--main-color);
-}
-
-#navbar a:hover::after {
+#navbar a:hover::after,
+#navbar a.active::after {
 	width: calc(100% - 2rem);
 }
 
-/* Estilos de accesibilidad para focus */
-#navbar a:focus,
-.whatsapp-btn:focus,
-.certificacion-logo:focus,
-.obra-social-logo:focus {
-	outline: 2px solid var(--main-color);
-	outline-offset: 2px;
-	border-radius: 4px;
-}
-
-/* Reducir movimiento para usuarios que lo prefieren */
-@media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
+#navbar a:hover {
+	color: var(--main-color);
 }
 
 #menu-bar {
@@ -215,18 +173,6 @@ header .container {
 	cursor: pointer;
 	font-size: 1.5rem;
 	padding: 0.5rem;
-	color: var(--text-color);
-	z-index: 1001;
-	position: relative;
-	background: transparent;
-	border: none;
-}
-
-#menu-bar i {
-	display: block;
-	width: 24px;
-	height: 24px;
-	font-size: 1.5rem;
 }
 
 /* Ajuste para el contenido debajo del header fijo */
@@ -774,11 +720,6 @@ main {
 	height: auto;
 	display: block;
 	object-fit: cover;
-	transition: transform 0.3s ease;
-}
-
-.indicaciones-image:hover img {
-	transform: scale(1.02);
 }
 
 .requisitos-list {
@@ -900,10 +841,6 @@ footer p {
 @media (max-width: 768px) {
 	#menu-bar {
 		display: block;
-		background-color: var(--light-bg);
-		border-radius: 4px;
-		padding: 0.8rem;
-		box-shadow: var(--shadow-light);
 	}
 
 	#navbar {
@@ -913,10 +850,8 @@ footer p {
 		width: 100%;
 		background-color: var(--white);
 		padding: 1rem;
-		box-shadow: var(--shadow-medium);
-		transition: left 0.3s ease;
-		z-index: 999;
-		border-radius: 0 0 8px 8px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		transition: 0.3s;
 	}
 
 	#navbar.active {
@@ -925,51 +860,21 @@ footer p {
 
 	#navbar ul {
 		flex-direction: column;
-		gap: 0;
+		gap: 1rem;
 	}
 
 	#navbar a {
 		display: block;
 		padding: 1rem;
 		text-align: center;
-		border-bottom: 1px solid var(--light-bg);
-	}
-
-	#navbar a:last-child {
-		border-bottom: none;
-	}
-
-	#navbar a::after {
-		display: none;
-	}
-
-	#navbar a:hover {
-		background-color: var(--light-bg);
-		border-radius: 4px;
 	}
 
 	.logo {
 		max-width: 200px;
 	}
 
-	.logo img {
-		max-height: 50px;
-	}
-
 	header .container {
 		padding: 0.5rem 20px;
-	}
-}
-
-/* Mejoras adicionales para tablets */
-@media (max-width: 1024px) and (min-width: 769px) {
-	.logo {
-		max-width: 220px;
-	}
-
-	#navbar a {
-		padding: 0.4rem 0.8rem;
-		font-size: 0.9rem;
 	}
 }
 
@@ -1153,80 +1058,5 @@ footer p {
 
 	footer {
 		padding: 3rem 0;
-	}
-}
-
-/* Media queries adicionales para mejor experiencia */
-
-/* Pantallas muy pequeñas */
-@media (max-width: 480px) {
-	.container {
-		padding: 0 15px;
-	}
-
-	.section-title {
-		font-size: 1.8rem;
-		margin-bottom: 2rem;
-	}
-
-	.section-content {
-		padding: 1rem;
-	}
-
-	#home h2 {
-		font-size: 2rem;
-	}
-
-	#home h3 {
-		font-size: 1.6rem;
-	}
-
-	.obras-sociales-logos {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0.8rem;
-	}
-}
-
-/* Pantallas grandes */
-@media (min-width: 1440px) {
-	.container {
-		max-width: 1600px;
-	}
-
-	.section-title {
-		font-size: 3rem;
-	}
-
-	#home h2 {
-		font-size: 3.5rem;
-	}
-
-	#home h3 {
-		font-size: 2.8rem;
-	}
-}
-
-/* Optimizaciones para impresión */
-@media print {
-	header,
-	#menu-bar,
-	.modal-overlay,
-	.whatsapp-btn {
-		display: none !important;
-	}
-
-	body {
-		background: white !important;
-		color: black !important;
-	}
-
-	section {
-		page-break-inside: avoid;
-		padding: 1rem 0;
-	}
-
-	.section-content {
-		box-shadow: none !important;
-		background: white !important;
 	}
 }

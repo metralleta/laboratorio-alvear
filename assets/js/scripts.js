@@ -33,9 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-	// Cerrar menú al hacer click en un enlace
+	// Cerrar menú al hacer click en un enlace y actualizar estado activo
 	navLinks.forEach(link => {
-		link.addEventListener('click', () => {
+		link.addEventListener('click', e => {
+			// Remover clase active de todos los enlaces inmediatamente
+			navLinks.forEach(navLink => navLink.classList.remove('active'))
+			// Agregar clase active al enlace clickeado inmediatamente
+			link.classList.add('active')
+
 			if (navbar) {
 				navbar.classList.remove('active')
 			}
@@ -45,6 +50,34 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		})
 	})
+
+	// Función para actualizar navbar activo
+	function updateActiveNavLink() {
+		const sections = document.querySelectorAll('section')
+		const scrollPos = window.scrollY + 150
+
+		sections.forEach(section => {
+			const top = section.offsetTop
+			const bottom = top + section.offsetHeight
+			const id = section.getAttribute('id')
+			const navLink = document.querySelector(`#navbar a[href="#${id}"]`)
+
+			if (scrollPos >= top && scrollPos <= bottom) {
+				// Remover clase active de todos los enlaces
+				navLinks.forEach(link => link.classList.remove('active'))
+				// Agregar clase active al enlace actual
+				if (navLink) {
+					navLink.classList.add('active')
+				}
+			}
+		})
+	}
+
+	// Detectar scroll para actualizar navbar activo
+	window.addEventListener('scroll', throttle(updateActiveNavLink, 100))
+
+	// Inicializar navbar activo
+	updateActiveNavLink()
 
 	// Scroll suave para los enlaces de navegación con mejor performance
 	smoothScrollLinks.forEach(anchor => {
