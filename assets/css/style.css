@@ -869,12 +869,26 @@ footer p {
 		text-align: center;
 	}
 
+	/* Ajustar línea decorativa en móvil */
+	#navbar a::after {
+		width: 0;
+	}
+
+	#navbar a:hover::after,
+	#navbar a.active::after {
+		width: 60%;
+	}
+
 	.logo {
 		max-width: 200px;
 	}
 
 	header .container {
 		padding: 0.5rem 20px;
+	}
+
+	main {
+		padding-top: 80px;
 	}
 }
 
@@ -899,6 +913,33 @@ footer p {
 
 	.section-content {
 		padding: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	#home h2 {
+		font-size: 2rem;
+	}
+
+	#home h3 {
+		font-size: 1.6rem;
+	}
+
+	#home p {
+		font-size: 1rem;
+	}
+
+	.section-title {
+		font-size: 1.6rem;
+		margin-bottom: 2rem;
+	}
+
+	.section-content {
+		padding: 1rem;
+	}
+
+	.logo {
+		max-width: 160px;
 	}
 }
 
@@ -949,7 +990,41 @@ footer p {
 	}
 }
 
+@media (max-width: 480px) {
+	.laboratorio-image {
+		min-height: 300px;
+	}
+
+	.laboratorio-content {
+		padding: 0;
+	}
+
+	.certificaciones-logos {
+		gap: 1.5rem;
+		min-height: 80px;
+	}
+
+	.certificacion-logo {
+		max-width: 80%;
+	}
+
+	.certificacion-logo img {
+		max-width: 120px;
+	}
+
+	.certificacion-logo:first-child img {
+		max-width: 140px;
+	}
+}
+
 /* Media queries para servicios */
+@media (max-width: 968px) {
+	.services-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+	}
+}
+
 @media (max-width: 768px) {
 	.services-grid {
 		grid-template-columns: 1fr;
@@ -965,6 +1040,29 @@ footer p {
 	.resultados-list li:before {
 		width: 30px;
 		height: 30px;
+	}
+}
+
+@media (max-width: 480px) {
+	#servicios {
+		padding: 4rem 0;
+	}
+
+	.card-content {
+		padding: 1rem;
+	}
+
+	.resultados-info {
+		padding: 1.5rem;
+		margin-top: 2rem;
+	}
+
+	.resultados-list {
+		gap: 1rem;
+	}
+
+	.resultados-list li {
+		padding: 0.8rem;
 	}
 }
 
@@ -1016,6 +1114,40 @@ footer p {
 	}
 }
 
+@media (max-width: 480px) {
+	#gestion-whatsapp {
+		padding: 4rem 0;
+	}
+
+	.gestion-subtitle {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		padding: 0 1rem;
+	}
+
+	.gestion-steps {
+		gap: 1.5rem;
+	}
+
+	.step {
+		padding: 1rem 0.5rem;
+	}
+
+	.step h3 {
+		font-size: 1rem;
+		margin-bottom: 0.8rem;
+	}
+
+	.step p {
+		font-size: 0.9rem;
+	}
+
+	.whatsapp-btn {
+		padding: 0.7rem 1.2rem;
+		font-size: 0.9rem;
+	}
+}
+
 /* Media queries para pacientes */
 @media (max-width: 968px) {
 	.pacientes-content {
@@ -1043,6 +1175,38 @@ footer p {
 	.section-content {
 		padding: 1rem;
 	}
+
+	.pacientes-column {
+		padding: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.pacientes-content {
+		gap: 1.5rem;
+	}
+
+	.pacientes-column {
+		padding: 1rem;
+	}
+
+	.obras-sociales-logos {
+		grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+		gap: 0.8rem;
+	}
+
+	.obra-social-logo {
+		min-height: 60px;
+		padding: 0.5rem;
+	}
+
+	.obra-social-logo img {
+		max-height: 35px;
+	}
+
+	.indicaciones-image {
+		margin-top: 1.5rem;
+	}
 }
 
 /* Media query para footer */
@@ -1058,5 +1222,28 @@ footer p {
 
 	footer {
 		padding: 3rem 0;
+	}
+}
+
+@media (max-width: 480px) {
+	footer {
+		padding: 2rem 0;
+	}
+
+	.contacto-info {
+		gap: 1.5rem;
+	}
+
+	.google-map {
+		height: 250px;
+	}
+
+	footer h3 {
+		font-size: 1.1rem;
+		margin-top: 1rem;
+	}
+
+	footer p {
+		font-size: 0.9rem;
 	}
 }
