@@ -1,6 +1,6 @@
 /* Variables globales */
 :root {
-	--main-color: #3368c6;
+	--main-color: #394c64;
 	--second-color: #031b4e;
 	--third-color: #203865;
 	--text-color: #4a5764;
@@ -113,10 +113,12 @@ header .container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: 1rem;
 }
 
 .logo {
-	max-width: 250px;
+	flex-shrink: 0;
+	width: 250px;
 	height: auto;
 }
 
@@ -134,9 +136,16 @@ header .container {
 	opacity: 0.9;
 }
 
+#navbar {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
 #navbar ul {
 	display: flex;
 	list-style: none;
+	flex-wrap: nowrap;
 }
 
 #navbar a {
@@ -191,40 +200,136 @@ main {
 	justify-content: center;
 	color: var(--white);
 	text-align: center;
+	overflow: hidden;
 }
 
-#home::before {
-	content: '';
+/* Carrusel */
+.carousel-container {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-image: url('../images/inicio_bg.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	filter: brightness(0.6);
 	z-index: -1;
+}
+
+.carousel-slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+
+.carousel-slide.active {
+	opacity: 1;
+}
+
+.carousel-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	filter: brightness(0.6) blur(0.5px);
+}
+
+/* Controles del carrusel */
+.carousel-controls {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 2rem;
+	z-index: 10;
+}
+
+.carousel-btn {
+	background: rgba(255, 255, 255, 0.2);
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	color: var(--white);
+	font-size: 1.5rem;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+}
+
+.carousel-btn:hover {
+	background: rgba(255, 255, 255, 0.3);
+	border-color: var(--white);
+	transform: scale(1.1);
+}
+
+/* Indicadores del carrusel */
+.carousel-indicators {
+	position: absolute;
+	bottom: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 0.8rem;
+	z-index: 10;
+}
+
+.indicator {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.4);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border: 2px solid transparent;
+}
+
+.indicator.active {
+	background: var(--white);
+	border-color: var(--main-color);
+}
+
+.indicator:hover {
+	background: rgba(255, 255, 255, 0.7);
+	transform: scale(1.2);
 }
 
 #home .section-content {
 	background-color: transparent;
 	padding: 2rem;
 	text-align: center;
+	position: relative;
+	z-index: 5;
+}
+
+/* Overlay adicional para mejorar contraste del texto */
+#home .section-content::before {
+	content: '';
+	position: absolute;
+	top: -2rem;
+	left: -2rem;
+	right: -2rem;
+	bottom: -2rem;
+	background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 70%, transparent 100%);
+	z-index: -1;
+	border-radius: 50%;
 }
 
 #home h2 {
 	font-size: 3rem;
 	margin-bottom: 2rem;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.3);
+	color: var(--white);
 }
 
 #home h3 {
 	color: var(--white);
 	font-size: 2.5rem;
 	margin-bottom: 2rem;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 #home p {
@@ -232,7 +337,8 @@ main {
 	max-width: 800px;
 	margin: 0 auto 1.5rem;
 	line-height: 1.8;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.4);
+	color: var(--white);
 }
 
 /* Sección nosotros */
@@ -365,6 +471,14 @@ main {
 	max-width: 240px;
 }
 
+/* Estilos específicos para obras sociales */
+.obras-sociales-title {
+	color: var(--main-color);
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	font-size: 1.3rem;
+}
+
 /* Modal para certificaciones */
 .modal-overlay {
 	position: fixed;
@@ -398,6 +512,22 @@ main {
 	max-height: 100%;
 	object-fit: contain;
 	border-radius: 8px;
+}
+
+/* Estilos específicos para elementos del modal */
+#modal-image {
+	display: none;
+}
+
+#modal-pdf {
+	display: none;
+	width: 100%;
+	height: 95vh;
+}
+
+/* Estilos para iframe del mapa */
+.google-map iframe {
+	border: 0;
 }
 
 /* Sección servicios */
@@ -486,6 +616,30 @@ main {
 .card p {
 	color: var(--text-color);
 	line-height: 1.6;
+}
+
+/* Lista de resultados dentro de la card */
+.resultados-list-card {
+	list-style-type: none;
+	margin: 1rem 0 0 0;
+	padding-left: 0;
+}
+
+.resultados-list-card li {
+	color: var(--text-color);
+	line-height: 1.6;
+	margin-bottom: 0.8rem;
+	padding-left: 1.2rem;
+	position: relative;
+}
+
+.resultados-list-card li:before {
+	content: '✓';
+	color: var(--main-color);
+	font-weight: bold;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .resultados-info {
@@ -777,25 +931,10 @@ main {
 
 /* Footer/contacto */
 footer {
-	background-color: rgba(3, 27, 78, 0.75);
+	background-color: var(--second-color);
 	color: var(--white);
 	padding: 4rem 0;
 	position: relative;
-}
-
-footer::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url('../images/footer_bg.png');
-	background-size: cover;
-	background-position: top center;
-	opacity: 0.4;
-	mix-blend-mode: overlay;
-	z-index: -1;
 }
 
 footer .container {
@@ -838,6 +977,36 @@ footer p {
 /* Media queries para responsive */
 
 /* Media queries para el header */
+/* Breakpoint intermedio - reducir espaciado del navbar */
+@media (max-width: 1200px) {
+	#navbar a {
+		padding: 0.5rem 0.8rem;
+		font-size: 0.95rem;
+	}
+}
+
+@media (max-width: 1000px) {
+	#navbar a {
+		padding: 0.5rem 0.6rem;
+		font-size: 0.9rem;
+	}
+
+	.logo {
+		width: 220px;
+	}
+}
+
+@media (max-width: 900px) {
+	#navbar a {
+		padding: 0.5rem 0.4rem;
+		font-size: 0.85rem;
+	}
+
+	.logo {
+		width: 200px;
+	}
+}
+
 @media (max-width: 768px) {
 	#menu-bar {
 		display: block;
@@ -867,6 +1036,7 @@ footer p {
 		display: block;
 		padding: 1rem;
 		text-align: center;
+		font-size: 1rem;
 	}
 
 	/* Ajustar línea decorativa en móvil */
@@ -880,7 +1050,7 @@ footer p {
 	}
 
 	.logo {
-		max-width: 200px;
+		width: 200px;
 	}
 
 	header .container {
@@ -913,6 +1083,27 @@ footer p {
 
 	.section-content {
 		padding: 1.5rem;
+	}
+
+	/* Ajustes del carrusel en móvil */
+	.carousel-controls {
+		padding: 0 1rem;
+	}
+
+	.carousel-btn {
+		width: 40px;
+		height: 40px;
+		font-size: 1.2rem;
+	}
+
+	.carousel-indicators {
+		bottom: 1rem;
+		gap: 0.6rem;
+	}
+
+	.indicator {
+		width: 10px;
+		height: 10px;
 	}
 }
 

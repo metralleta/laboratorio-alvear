@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// Cache DOM elements
 	const menuBar = document.querySelector('#menu-bar')
 	const navbar = document.querySelector('#navbar')
 	const menuIcon = menuBar?.querySelector('i')
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	const navLinks = document.querySelectorAll('#navbar a')
 	const smoothScrollLinks = document.querySelectorAll('a[href^="#"]')
 
-	// Throttle function for performance
 	function throttle(func, wait) {
 		let timeout
 		return function executedFunction(...args) {
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	// Toggle menu en móvil
 	if (menuBar && navbar && menuIcon) {
 		menuBar.addEventListener('click', () => {
 			navbar.classList.toggle('active')
@@ -33,12 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-	// Cerrar menú al hacer click en un enlace y actualizar estado activo
 	navLinks.forEach(link => {
 		link.addEventListener('click', e => {
-			// Remover clase active de todos los enlaces inmediatamente
 			navLinks.forEach(navLink => navLink.classList.remove('active'))
-			// Agregar clase active al enlace clickeado inmediatamente
 			link.classList.add('active')
 
 			if (navbar) {
@@ -51,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	})
 
-	// Función para actualizar navbar activo
 	function updateActiveNavLink() {
 		const sections = document.querySelectorAll('section')
 		const scrollPos = window.scrollY + 150
@@ -63,9 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			const navLink = document.querySelector(`#navbar a[href="#${id}"]`)
 
 			if (scrollPos >= top && scrollPos <= bottom) {
-				// Remover clase active de todos los enlaces
 				navLinks.forEach(link => link.classList.remove('active'))
-				// Agregar clase active al enlace actual
+
 				if (navLink) {
 					navLink.classList.add('active')
 				}
@@ -73,13 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-	// Detectar scroll para actualizar navbar activo
 	window.addEventListener('scroll', throttle(updateActiveNavLink, 100))
 
-	// Inicializar navbar activo
 	updateActiveNavLink()
 
-	// Scroll suave para los enlaces de navegación con mejor performance
 	smoothScrollLinks.forEach(anchor => {
 		anchor.addEventListener('click', function (e) {
 			e.preventDefault()
@@ -90,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			const targetElement = document.querySelector(targetId)
 
 			if (targetElement) {
-				// Usar requestAnimationFrame para mejor performance
 				requestAnimationFrame(() => {
 					targetElement.scrollIntoView({
 						behavior: 'smooth',
@@ -101,9 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	})
 
-	// Modal para certificaciones con mejor manejo de memoria
 	if (modal && modalImage && modalPdf && pdfDownload) {
-		// Agregar evento click a cada imagen de certificación
 		certificacionImages.forEach(img => {
 			img.addEventListener('click', function () {
 				const pdfUrl = this.getAttribute('data-pdf')
@@ -127,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 		})
 
-		// Función para cerrar modal
 		const closeModal = () => {
 			modal.style.display = 'none'
 			modalPdf.data = ''
@@ -135,14 +120,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			document.body.style.overflow = 'auto'
 		}
 
-		// Cerrar modal al hacer click en el overlay
 		modal.addEventListener('click', function (e) {
 			if (e.target === modal) {
 				closeModal()
 			}
 		})
 
-		// Cerrar modal con la tecla Escape
 		document.addEventListener('keydown', function (e) {
 			if (e.key === 'Escape' && modal.style.display === 'flex') {
 				closeModal()
@@ -150,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-	// Optimización para imágenes lazy loading
 	if ('IntersectionObserver' in window) {
 		const imageObserver = new IntersectionObserver((entries, observer) => {
 			entries.forEach(entry => {
@@ -168,5 +150,76 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.querySelectorAll('img[data-src]').forEach(img => {
 			imageObserver.observe(img)
 		})
+	}
+
+	const slides = document.querySelectorAll('.carousel-slide')
+	const indicators = document.querySelectorAll('.indicator')
+	const prevBtn = document.querySelector('.prev-btn')
+	const nextBtn = document.querySelector('.next-btn')
+
+	let currentSlide = 0
+	let carouselInterval
+
+	function showSlide(index) {
+		slides.forEach(slide => slide.classList.remove('active'))
+		indicators.forEach(indicator => indicator.classList.remove('active'))
+
+		if (slides[index] && indicators[index]) {
+			slides[index].classList.add('active')
+			indicators[index].classList.add('active')
+		}
+
+		currentSlide = index
+	}
+
+	function nextSlide() {
+		const next = (currentSlide + 1) % slides.length
+		showSlide(next)
+	}
+
+	function prevSlide() {
+		const prev = (currentSlide - 1 + slides.length) % slides.length
+		showSlide(prev)
+	}
+
+	function startAutoCarousel() {
+		carouselInterval = setInterval(nextSlide, 5000) // Cambiar cada 5 segundos
+	}
+
+	function stopAutoCarousel() {
+		clearInterval(carouselInterval)
+	}
+
+	if (nextBtn && prevBtn) {
+		nextBtn.addEventListener('click', () => {
+			nextSlide()
+			stopAutoCarousel()
+			startAutoCarousel() // Reiniciar el auto-carrusel
+		})
+
+		prevBtn.addEventListener('click', () => {
+			prevSlide()
+			stopAutoCarousel()
+			startAutoCarousel() // Reiniciar el auto-carrusel
+		})
+	}
+
+	indicators.forEach((indicator, index) => {
+		indicator.addEventListener('click', () => {
+			showSlide(index)
+			stopAutoCarousel()
+			startAutoCarousel() // Reiniciar el auto-carrusel
+		})
+	})
+
+	const homeSection = document.getElementById('home')
+	if (homeSection) {
+		homeSection.addEventListener('mouseenter', stopAutoCarousel)
+		homeSection.addEventListener('mouseleave', startAutoCarousel)
+	}
+
+	if (slides.length > 0) {
+		showSlide(0)
+		startAutoCarousel()
 	}
 })
