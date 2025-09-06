@@ -305,19 +305,6 @@ main {
 	z-index: 5;
 }
 
-/* Overlay adicional para mejorar contraste del texto */
-#home .section-content::before {
-	content: '';
-	position: absolute;
-	top: -2rem;
-	left: -2rem;
-	right: -2rem;
-	bottom: -2rem;
-	background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 70%, transparent 100%);
-	z-index: -1;
-	border-radius: 50%;
-}
-
 #home h2 {
 	font-size: 3rem;
 	margin-bottom: 2rem;
