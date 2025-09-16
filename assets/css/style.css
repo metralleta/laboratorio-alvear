@@ -24,7 +24,7 @@ html {
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 1rem;
 	line-height: 1.6;
 	color: var(--text-color);
@@ -48,7 +48,8 @@ section {
 	color: var(--second-color);
 	text-transform: uppercase;
 	font-size: 2.5rem;
-	font-weight: 300;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 	text-align: center;
 	margin-bottom: 3rem;
 	width: 100%;
@@ -77,11 +78,14 @@ h3 {
 	font-size: 1.8rem;
 	margin-bottom: 1.5rem;
 	text-transform: uppercase;
-	font-weight: 400;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 .card h3 {
 	font-size: 1.5rem;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 p {
@@ -211,6 +215,9 @@ main {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
+	/* Mejorar rendimiento en móviles */
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
 }
 
 .carousel-slide {
@@ -233,6 +240,10 @@ main {
 	object-fit: cover;
 	object-position: center;
 	filter: brightness(0.6) blur(0.5px);
+	/* Optimizar para móviles */
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	will-change: opacity;
 }
 
 /* Controles del carrusel */
@@ -310,6 +321,8 @@ main {
 	margin-bottom: 2rem;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.3);
 	color: var(--white);
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 #home h3 {
@@ -317,6 +330,8 @@ main {
 	font-size: 2.5rem;
 	margin-bottom: 2rem;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.3);
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 #home p {
@@ -394,6 +409,8 @@ main {
 	font-size: 1.2rem;
 	margin-top: 1.5rem;
 	margin-bottom: 0.5rem;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 .laboratorio-content ul {
@@ -464,6 +481,8 @@ main {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.3rem;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 /* Modal para certificaciones */
@@ -612,6 +631,13 @@ main {
 	padding-left: 0;
 }
 
+/* Lista para resultados digitales sin círculos */
+.card-content ul {
+	list-style-type: none;
+	margin: 1rem 0 0 0;
+	padding-left: 0;
+}
+
 .resultados-list-card li {
 	color: var(--text-color);
 	line-height: 1.6;
@@ -640,6 +666,8 @@ main {
 .resultados-info h3 {
 	color: var(--main-color);
 	margin-bottom: 1rem;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 }
 
 .resultados-list {
@@ -775,7 +803,8 @@ main {
 	font-size: 1.3rem;
 	margin-bottom: 1rem;
 	text-transform: none;
-	font-weight: 600;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 	line-height: 1.4;
 }
 
@@ -938,7 +967,8 @@ footer h3 {
 	font-size: 1.3rem;
 	margin-top: 1.5rem;
 	margin-bottom: 0.5rem;
-	font-weight: 600;
+	font-family: 'Lora', serif;
+	font-weight: 700;
 	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -1000,12 +1030,12 @@ footer p {
 	}
 
 	#navbar {
-		position: absolute;
-		top: 100%;
+		position: fixed;
+		top: 100px;
 		left: -100%;
-		width: 100%;
+		width: 100vw;
 		background-color: var(--white);
-		padding: 1rem;
+		padding: 1rem 0;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 		transition: 0.3s;
 	}
@@ -1017,6 +1047,12 @@ footer p {
 	#navbar ul {
 		flex-direction: column;
 		gap: 1rem;
+		width: 100%;
+		padding: 0;
+	}
+
+	#navbar ul li {
+		width: 100%;
 	}
 
 	#navbar a {
@@ -1024,6 +1060,7 @@ footer p {
 		padding: 1rem;
 		text-align: center;
 		font-size: 1rem;
+		width: 100%;
 	}
 
 	/* Ajustar línea decorativa en móvil */
@@ -1033,7 +1070,7 @@ footer p {
 
 	#navbar a:hover::after,
 	#navbar a.active::after {
-		width: 60%;
+		width: 30%;
 	}
 
 	.logo {
@@ -1078,19 +1115,69 @@ footer p {
 	}
 
 	.carousel-btn {
-		width: 40px;
-		height: 40px;
-		font-size: 1.2rem;
+		width: 50px;
+		height: 50px;
+		font-size: 1.4rem;
+		/* Mejor visibilidad y contraste para iPhone */
+		background: rgba(255, 255, 255, 0.95);
+		border: 3px solid rgba(255, 255, 255, 1);
+		/* Área táctil óptima para iOS (mínimo 44px) */
+		min-width: 50px;
+		min-height: 50px;
+		/* Quitar backdrop-filter para mejor rendimiento en iOS */
+		backdrop-filter: none;
+		/* Mejorar la respuesta táctil */
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.carousel-btn:hover,
+	.carousel-btn:active {
+		background: rgba(255, 255, 255, 1);
+		transform: scale(0.95);
 	}
 
 	.carousel-indicators {
-		bottom: 1rem;
-		gap: 0.6rem;
+		bottom: 1.5rem;
+		gap: 1rem;
 	}
 
 	.indicator {
-		width: 10px;
-		height: 10px;
+		width: 16px;
+		height: 16px;
+		/* Área táctil expandida para iPhone */
+		min-width: 44px;
+		min-height: 44px;
+		padding: 14px;
+		box-sizing: border-box;
+		/* Mejorar la respuesta táctil */
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
+		/* Centrar el indicador visual */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.indicator::before {
+		content: '';
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.4);
+		border: 2px solid transparent;
+		transition: all 0.3s ease;
+	}
+
+	.indicator.active::before {
+		background: var(--white);
+		border-color: var(--main-color);
+	}
+
+	.indicator:hover::before {
+		background: rgba(255, 255, 255, 0.7);
+		transform: scale(1.2);
 	}
 }
 
@@ -1423,5 +1510,44 @@ footer p {
 
 	footer p {
 		font-size: 0.9rem;
+	}
+}
+
+/* WhatsApp floating button */
+.whatsapp-float {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background: linear-gradient(135deg, #25d366, #128c7e);
+	color: var(--white);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	z-index: 1000;
+	transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+.whatsapp-float:hover {
+	transform: translateY(-5px) scale(1.1);
+	background: linear-gradient(135deg, #128c7e, #25d366);
+}
+
+.whatsapp-float i {
+	color: var(--white);
+}
+
+/* Responsive adjustments for floating button */
+@media (max-width: 768px) {
+	.whatsapp-float {
+		width: 50px;
+		height: 50px;
+		font-size: 1.5rem;
+		bottom: 15px;
+		right: 15px;
 	}
 }
